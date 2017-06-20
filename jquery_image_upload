@@ -1,0 +1,33 @@
+<form enctype='multipart/form-data' data-toggle="validator" role="form" method="post" class="modaFormSubmit form-label-left" >
+
+<div class="form-group has-feedback">
+		        <label for="Image" class="control-label">Image </label><br>
+		        <label class="btn btn-default btn-file"> Choose Image <input type="file"  id="Image" class="form-control profile_pic" name="USER_PHOTO" width="100%" style="display: none;"></label>
+		        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+		        <div class="help-block with-errors"></div>
+		    
+		        <center>
+		            <img id="blah" src="@if(isset($editData)) {{asset('UPLOADS/Clients_logo/'. $editData->USER_PHOTO) }} @else  {{ asset('UPLOADS/Clients_logo/avatar.png')}} @endif" alt="User Image" width="150px" height="100px" />
+		        </center>
+		    </div>
+
+</form>
+
+<script>
+    function readURL(input) {
+
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+            $('#blah').attr('src', e.target.result);
+          }
+
+          reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("input#Image").change(function(){
+        readURL(this);
+    });
+</script>
